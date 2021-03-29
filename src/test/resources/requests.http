@@ -1,0 +1,99 @@
+###
+
+GET http://localhost:8080/products
+
+###
+
+POST http://localhost:8080/products/caps
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "Red Cap",
+  "price": 500,
+  "color": "red",
+  "size": "M"
+}
+
+###
+
+POST http://localhost:8080/products/books
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "Anna Karenina",
+  "price": 900,
+  "author": "Tolstoy"
+}
+
+###
+
+POST http://localhost:8080/products/laptops
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "Lenovo",
+  "price": 33900,
+  "screenDiagonal": 14,
+  "randomAccessMemory": 4,
+  "processor": "Intel Core "
+}
+
+###
+
+POST http://localhost:8080/products/smartphones
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "Apple iPhone 12",
+  "price": 78000,
+  "display": 6.1,
+  "memory": 128
+}
+
+###
+
+GET http://localhost:8080/products/search?text=anna
+
+###
+
+GET http://localhost:8080/products/search?text=tolstoy
+
+###
+
+GET http://localhost:8080/products/search?text=Intel
+
+
+###
+
+GET http://localhost:8080/products/catalog/books
+
+###
+
+GET http://localhost:8080/products/catalog/caps
+
+###
+
+GET http://localhost:8080/products/catalog/laptops
+
+###
+
+GET http://localhost:8080/products/catalog/smartphones
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

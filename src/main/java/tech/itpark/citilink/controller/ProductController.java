@@ -5,6 +5,7 @@ import tech.itpark.citilink.domain.*;
 import tech.itpark.citilink.manager.ProductManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -12,17 +13,17 @@ public class ProductController {
     private ProductManager manager = new ProductManager();
 
     @GetMapping()
-    public ArrayList<Product> getAll() {
+    public List<Product> getAll() {
         return manager.getAll();
     }
 
     @GetMapping("/search")
-    public ArrayList<Product> search (@RequestParam String text) {
+    public List<Product> search (@RequestParam String text) {
         return manager.search(text);
     }
 
     @GetMapping("/catalog/{type}")
-    public ArrayList<Product> filter (@PathVariable String type) {
+    public List<Product> filter (@PathVariable String type) {
         return manager.filter(type);
     }
 
@@ -45,6 +46,15 @@ public class ProductController {
     public void add (@RequestBody Smartphone product) {
         manager.add(product);
     }
+
+    @PutMapping("/{id}")
+    public Product updateById(@PathVariable long id, @RequestBody ProductUpdate dto) {
+        return manager.updateById(id, dto); }
+
+    @DeleteMapping("/{id}")
+    public void removeById(@PathVariable long id) {
+        manager.removeById(id); }
+
 
 
 }

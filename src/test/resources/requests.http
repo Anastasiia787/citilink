@@ -84,6 +84,29 @@ GET http://citilink-product.herokuapp.com/products/catalog/laptops
 GET http://citilink-product.herokuapp.com/products/catalog/smartphones
 
 
+###
+
+PUT http://citilink-product.herokuapp.com/products/2
+Content-Type: application/json
+
+{
+  "name": "black cap",
+  "price": 1000
+}
+
+###
+
+PUT http://citilink-product.herokuapp.com/products/4
+Content-Type: application/json
+
+{
+  "name": "Apple IPhone 11",
+  "price": 65000
+}
+
+###
+
+DELETE http://citilink-product.herokuapp.com/products/1
 
 
 

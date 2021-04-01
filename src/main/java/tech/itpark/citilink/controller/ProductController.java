@@ -47,9 +47,6 @@ public class ProductController {
         manager.add(product);
     }
 
-    @PutMapping("/{id}")
-    public Product updateById(@PathVariable long id, @RequestBody ProductUpdate dto) {
-        return manager.updateById(id, dto); }
 
     @DeleteMapping("/{id}")
     public void removeById(@PathVariable long id) {

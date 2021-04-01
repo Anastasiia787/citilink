@@ -10,8 +10,8 @@ public class Laptop extends Product {
     private int randomAccessMemory;
     private String processor;
 
-    public Laptop(long id, String name, int price, double screenDiagonal, int randomAccessMemory, String processor) {
-        super(id, name, price);
+    public Laptop(long id, String name, int price, boolean removed, double screenDiagonal, int randomAccessMemory, String processor) {
+        super(id, name, price, removed);
         this.screenDiagonal = screenDiagonal;
         this.randomAccessMemory = randomAccessMemory;
         this.processor = processor;

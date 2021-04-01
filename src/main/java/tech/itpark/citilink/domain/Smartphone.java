@@ -10,8 +10,8 @@ public class Smartphone extends Product {
     private double display;
     private int memory;
 
-    public Smartphone(long id, String name, int price, double display, int memory) {
-        super(id, name, price);
+    public Smartphone(long id, String name, int price, boolean removed, double display, int memory) {
+        super(id, name, price, removed);
         this.display = display;
         this.memory = memory;
     }

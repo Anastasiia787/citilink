@@ -17,6 +17,11 @@ public class ProductController {
         return manager.getAll();
     }
 
+    @GetMapping("/{id}")
+    public void getById(@PathVariable long id) {
+        manager.getById(id);
+    }
+
     @GetMapping("/search")
     public List<Product> search (@RequestParam String text) {
         return manager.search(text);
@@ -47,11 +52,14 @@ public class ProductController {
         manager.add(product);
     }
 
+    @PutMapping("/{id}")
+    public void updateById (@PathVariable long id, @RequestBody ProductUpdate dto) {
+        manager.updateById(id, dto);
+    }
+
 
     @DeleteMapping("/{id}")
     public void removeById(@PathVariable long id) {
-        manager.removeById(id); }
-
-
-
+        manager.removeById(id);
+    }
 }

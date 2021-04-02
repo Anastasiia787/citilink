@@ -5,14 +5,27 @@ import tech.itpark.citilink.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class ProductManager {
-   private ArrayList<Product> items = new ArrayList<>();
+   private List<Product> items = new ArrayList<>();
 
    public List<Product> getAll() {
        return items;
    }
+
+    public void add(Product product) {
+        items.add(product);
+    }
+    public Product getById (long id) {
+        for (Product item : items) {
+            if (item.getId()== id) {
+                return item;
+            }
+        }
+        return null;
+    }
 
     public List<Product> search(String text) {
         List<Product> result = new ArrayList<>();
@@ -81,12 +94,11 @@ public class ProductManager {
         return result;
     }
 
-    public void add(Product product) {
-       items.add(product);
-    }
-    public Product getById (long id) {
+    public Product updateById (long id, ProductUpdate dto) {
         for (Product item : items) {
-            if (item.getId()== id) {
+            if (item.getId() == id) {
+                item.setName(dto.getName());
+                item.setPrice(dto.getPrice());
                 return item;
             }
         }
@@ -102,20 +114,10 @@ public class ProductManager {
         }
     }
 
-    public Product updateById (long id, ProductUpdate dto) {
-        for (Product item : items) {
-            if (item.getId() == id) {
-                item.setName(dto.getName());
-                item.setPrice(dto.getPrice());
-                return item;
-            }
-        }
-        return null;
-    }
-
     private boolean contains(String field, String target) {
         return field.toLowerCase().contains(target);
     }
+
 
 
 }

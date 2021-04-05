@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.*;
 import tech.itpark.citilink.domain.*;
 import tech.itpark.citilink.manager.ProductManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,43 +22,50 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public List<Product> search (@RequestParam String text) {
+    public List<Product> search(@RequestParam String text) {
         return manager.search(text);
     }
 
     @GetMapping("/catalog/{type}")
-    public List<Product> filter (@PathVariable String type) {
+    public List<Product> filter(@PathVariable String type) {
         return manager.filter(type);
     }
 
     @PostMapping("/caps")
-    public void add (@RequestBody Cap product) {
+    public void add(@RequestBody Cap product) {
         manager.add(product);
     }
 
     @PostMapping("/books")
-    public void add (@RequestBody Book product) {
+    public void add(@RequestBody Book product) {
         manager.add(product);
     }
 
     @PostMapping("/laptops")
-    public void add (@RequestBody Laptop product) {
+    public void add(@RequestBody Laptop product) {
         manager.add(product);
     }
 
     @PostMapping("/smartphones")
-    public void add (@RequestBody Smartphone product) {
+    public void add(@RequestBody Smartphone product) {
         manager.add(product);
     }
 
     @PutMapping("/{id}")
-    public void updateById (@PathVariable long id, @RequestBody ProductUpdate dto) {
-        manager.updateById(id, dto);
+    public Object updateById(@PathVariable long id, @RequestBody ProductUpdate dto) {
+        try {
+            return manager.updateById(id, dto);
+        } catch (RuntimeException e) {
+            return e.getMessage();
+        }
     }
 
-
     @DeleteMapping("/{id}")
-    public void removeById(@PathVariable long id) {
-        manager.removeById(id);
+    public void removeById(@PathVariable long id) throws RuntimeException {
+        try {
+            manager.removeById(id);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -108,6 +108,16 @@ Content-Type: application/json
 
 DELETE http://citilink-product.herokuapp.com/products/1
 
+###
+
+PUT http://citilink-product.herokuapp.com/products/5
+Content-Type: application/json
+
+{
+  "name": "Apple IPhone 11",
+  "price": 65000
+}
+
 
 
 

@@ -3,24 +3,28 @@ package tech.itpark.citilink.manager;
 import tech.itpark.citilink.domain.*;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 public class ProductManager {
-   private List<Product> items = new ArrayList<>();
 
-   public List<Product> getAll() {
-       return items;
-   }
+    private long nextId = 1;
+    private List<Product> items = new ArrayList<>();
+
+    public List<Product> getAll() {
+        return items;
+    }
 
     public void add(Product product) {
+        product.setId(nextId);
         items.add(product);
+        nextId++;
+
     }
-    public Product getById (long id) {
+
+    public Product getById(long id) {
         for (Product item : items) {
-            if (item.getId()== id) {
+            if (item.getId() == id) {
                 return item;
             }
         }
@@ -32,7 +36,7 @@ public class ProductManager {
         String target = text.trim().toLowerCase();
 
         for (Product item : items) {
-            if (contains(item.getName(),target)) {
+            if (contains(item.getName(), target)) {
                 result.add(item);
                 continue;
             }
@@ -69,7 +73,7 @@ public class ProductManager {
     }
 
     public List<Product> filter(String type) {
-    List<Product> result = new ArrayList<>();
+        List<Product> result = new ArrayList<>();
 
         for (Product item : items) {
             if (type.equals("caps") && item instanceof Cap) {
@@ -94,7 +98,7 @@ public class ProductManager {
         return result;
     }
 
-    public Product updateById (long id, ProductUpdate dto) {
+    public Product updateById(long id, ProductUpdate dto) {
         for (Product item : items) {
             if (item.getId() == id) {
                 item.setName(dto.getName());
@@ -102,22 +106,22 @@ public class ProductManager {
                 return item;
             }
         }
-        return null;
+        throw new RuntimeException("Product by id = " + id + " not found!");
     }
 
-    public void removeById (long id) {
+    public void removeById(long id) {
         for (Product item : items) {
             if (item.getId() == id) {
                 item.setRemoved(true);
                 return;
             }
         }
+        throw new RuntimeException("Product by id = " + id + " not found!");
     }
 
     private boolean contains(String field, String target) {
         return field.toLowerCase().contains(target);
     }
 
-
-
 }
+
